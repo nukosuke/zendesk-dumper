@@ -1,4 +1,4 @@
-module github.com/nukosuke/zendesk-trigger-dumper
+module github.com/nukosuke/zendesk-dumper
 
 go 1.12
 
