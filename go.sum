@@ -6,6 +6,8 @@ github.com/nukosuke/go-zendesk v0.2.0 h1:1a0eYB0xaM41eGfBeSmDq9jNinBHF1HdwCmrX2P
 github.com/nukosuke/go-zendesk v0.2.0/go.mod h1:gzqZs92TlnfRatCIM0IEzd407JuxL+B+YybPmoR8hhE=
 github.com/nukosuke/go-zendesk v0.2.1-0.20190516055137-f436a4a199c2 h1:SmOwQuuhv/FOuxMozJ/ROWw4MHHILEPJt61mWvFAoOI=
 github.com/nukosuke/go-zendesk v0.2.1-0.20190516055137-f436a4a199c2/go.mod h1:LGunsO5BF+VXGxd5e/m1F4mNT5wuSJjZt8epEA3fn2A=
+github.com/nukosuke/go-zendesk v0.6.0 h1:xktWHBPSEM5DYfvILDMYqlwG2cJ1k8VtakpQnXvpNss=
+github.com/nukosuke/go-zendesk v0.6.0/go.mod h1:7XxU/uBO4u+uEL+XJOfJn6q/X4SqCosI3TADzPxahmY=
 golang.org/x/crypto v0.0.0-20190308221718-c2843e01d9a2/go.mod h1:djNgcEr1/C05ACkg1iLfiJU5Ep61QUkGW8qpdssI0+w=
 golang.org/x/net v0.0.0-20190311183353-d8887717615a/go.mod h1:t9HGtf8HONx5eT2rtn7q6eTqICYqUVnKs3thJo3Qplg=
 golang.org/x/sync v0.0.0-20190423024810-112230192c58/go.mod h1:RxMgew5VJxzue5/jJTE5uejpjVlOe/izrB70Jof72aM=
