@@ -13,7 +13,6 @@ import (
 
 func main() {
 	client, err := zendesk.NewClient(nil)
-
 	if err != nil {
 		fmt.Println(err)
 		os.Exit(1)
@@ -25,7 +24,7 @@ func main() {
 
 	outputFile := os.Getenv("OUTPUT_FILE")
 	if outputFile == "" {
-		outputFile = fmt.Sprintf("triggers-%d.json", time.Now().Unix())
+		outputFile = fmt.Sprintf("tickets-%d.json", time.Now().Unix())
 	}
 
 	fmt.Printf(`===== Zendesk Account Information =====
@@ -38,43 +37,33 @@ mail:    %s
 	client.SetCredential(zendesk.NewAPITokenCredential(email, token))
 
 	// Result data
-	triggers := []zendesk.Trigger{}
+	tickets := []zendesk.Ticket{}
 
 	// Dump resources
-	pageNum := 1
-	for {
-		triggersInPage, page, err := client.GetTriggers(context.Background(), &zendesk.TriggerListOptions{
-			PageOptions: zendesk.PageOptions{
-				Page: pageNum,
-			},
-		})
-
+	ops := zendesk.NewPaginationOptions()
+	it := client.GetTicketsEx(context.Background(), ops)
+	for it.HasMore() {
+		ticketsInPage, err := it.GetNext()
 		if err != nil {
 			fmt.Errorf("[E] %v", err)
 			os.Exit(1)
 		}
 
-		triggers = append(triggers, triggersInPage...)
-
-		if !page.HasNext() {
-			break
-		}
-
-		pageNum = pageNum + 1
+		tickets = append(tickets, ticketsInPage...)
 	}
 
 	// Output
-	jbytes, err := json.MarshalIndent(triggers, "", "  ")
+	jsonBytes, err := json.MarshalIndent(tickets, "", "  ")
 	if err != nil {
 		fmt.Println(err)
 		os.Exit(1)
 	}
 
-	err = ioutil.WriteFile(outputFile, jbytes, 0644)
+	err = ioutil.WriteFile(outputFile, jsonBytes, 0644)
 	if err != nil {
 		fmt.Printf("Failed to write file: %v", err)
 		os.Exit(1)
 	}
 
-	fmt.Println("Triggers have been dumped to", outputFile)
+	fmt.Println("Tickets have been dumped to", outputFile)
 }
